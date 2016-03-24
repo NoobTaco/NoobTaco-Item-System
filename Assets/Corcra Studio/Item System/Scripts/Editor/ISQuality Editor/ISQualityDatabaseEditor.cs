@@ -21,7 +21,7 @@ namespace CorcraStudio.ItemSystem.Editor
 
 
 
-        [MenuItem("Corcra Studio/Database/Quality Editor %#i")]
+        [MenuItem("Corcra Studio/Database/Quality Editor %#w")]
         public static void Init()
         {
             ISQualityDatabaseEditor window = EditorWindow.GetWindow<ISQualityDatabaseEditor>();
