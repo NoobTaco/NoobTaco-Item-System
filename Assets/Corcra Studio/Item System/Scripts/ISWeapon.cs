@@ -122,6 +122,12 @@ namespace CorcraStudio.ItemSystem
 
         }
 
+ //       public void DisplayIcon()
+ //       {
+ //           _icon = EditorGUILayout.ObjectField("Icon", _icon, typeof(GameObject), false) as GameObject;
+ //       }
+
+
 
         public void DisplayPrefab()
         {

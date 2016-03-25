@@ -72,7 +72,7 @@ namespace CorcraStudio.ItemSystem
 
         public void DisplayIcon()
         {
-            GUILayout.Label("Icon");
+            _icon = EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false) as Sprite;
         }
 
         public int SelectedQualityID
@@ -97,5 +97,9 @@ namespace CorcraStudio.ItemSystem
             qualitySelectedIndex = EditorGUILayout.Popup("Quality", qualitySelectedIndex, option);
             _quality = qdb.Get(SelectedQualityID);
         }
+
+        //To be moved to a editor version of this class
+
+
     }
 }
