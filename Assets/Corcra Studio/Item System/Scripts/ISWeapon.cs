@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System;
 
@@ -21,7 +22,6 @@ namespace CorcraStudio.ItemSystem
         public ISWeapon()
         {
             _equipmentSlot = new ISEquipmentSlot();
-            _prefab = new GameObject();
         }
 
         public ISWeapon(int durability, int maxDurability, ISEquipmentSlot eqipmentSlot, GameObject prefab)
@@ -100,6 +100,12 @@ namespace CorcraStudio.ItemSystem
         public bool Equip()
         {
             throw new NotImplementedException();
+        }
+
+
+        public void OnGUI()
+        {
+            Name = EditorGUILayout.TextField("Name: ", Name);
         }
     }
 }

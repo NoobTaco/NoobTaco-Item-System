@@ -33,8 +33,8 @@ namespace CorcraStudio.ItemSystem.Editor
 
         void OnEnable()
         {
-            qualityDatabase = ScriptableObject.CreateInstance<ISQualityDatabase>();
-            qualityDatabase = qualityDatabase.GetDatabase<ISQualityDatabase>(DATABASE_PATH, DATABASE_NAME);
+            if (qualityDatabase == null)
+            qualityDatabase = ISQualityDatabase.GetDatabase<ISQualityDatabase>(DATABASE_PATH, DATABASE_NAME);
 
         }
 
