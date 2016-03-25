@@ -6,7 +6,7 @@ using System;
 namespace CorcraStudio.ItemSystem
 {
     [System.Serializable]
-    public class ISWeapon : ISObject, IISWeapon, IISDestructable, IISEquipable, IISGameObject
+    public class ISWeapon : ISObject, IISWeapon, IISDestructable, IISGameObject
     {
         [SerializeField]
         int _minDamage;
@@ -18,6 +18,8 @@ namespace CorcraStudio.ItemSystem
         ISEquipmentSlot _equipmentSlot;
         [SerializeField]
         GameObject _prefab;
+
+        public EquipmentSlot equipmentSlot;
 
         public ISWeapon()
         {
@@ -97,11 +99,6 @@ namespace CorcraStudio.ItemSystem
 
 
 
-        public bool Equip()
-        {
-            throw new NotImplementedException();
-        }
-
 
         //this code will go in to a new script later
 
@@ -120,6 +117,7 @@ namespace CorcraStudio.ItemSystem
 
         public void DisplayEquipmentSlot()
         {
+           equipmentSlot= (EquipmentSlot)EditorGUILayout.EnumPopup("Equipment Slot", equipmentSlot);
             GUILayout.Label("Equipment Slot");
 
         }
