@@ -17,7 +17,7 @@ namespace CorcraStudio.ItemSystem.Editor
 
         const string DATABASE_NAME = @"csQualityDatabase.asset";
         const string DATABASE_PATH = @"Database";
-        const string DATABASE_FULL_PATH = @"Assets/" + DATABASE_PATH + "/" + DATABASE_NAME;
+ //       const string DATABASE_FULL_PATH = @"Assets/" + DATABASE_PATH + "/" + DATABASE_NAME;
 
 
 

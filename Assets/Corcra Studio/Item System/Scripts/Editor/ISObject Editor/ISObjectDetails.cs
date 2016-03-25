@@ -34,7 +34,7 @@ namespace CorcraStudio.ItemSystem.Editor
         void DisplayNewWeapon()
         {
             tempWeapon.OnGUI();
-            
+
         }
 
 
@@ -55,6 +55,14 @@ namespace CorcraStudio.ItemSystem.Editor
                 if (GUILayout.Button("Save"))
                 {
                     showNewWeaponDetails = false;
+
+                    //                   string DATABASE_NAME = @"csQualityDatabase.asset";
+                    //                    string DATABASE_PATH = @"Database";
+                    //                    ISQualityDatabase qdb;
+                    //
+                    //                    tempWeapon.Quality = qdb.Get(tempWeapon.SelectedQualityID);
+
+                    database.Add(tempWeapon);
                     tempWeapon = null;
                 }
 
