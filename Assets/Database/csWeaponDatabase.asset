@@ -39,12 +39,24 @@ MonoBehaviour:
   - _name: Axe of Silverwood
     _icon: {fileID: 0}
     _value: 1500
-    _burden: 15
+    _burden: 5
     _quality:
       _name: Epic
       _icon: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-    _minDamage: 100
+    _minDamage: 45
     _durability: 100
     _maxDurability: 100
+    _prefab: {fileID: 0}
+    equipmentSlot: 3
+  - _name: Broadsword
+    _icon: {fileID: 0}
+    _value: 25
+    _burden: 5
+    _quality:
+      _name: Rare
+      _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    _minDamage: 10
+    _durability: 10
+    _maxDurability: 10
     _prefab: {fileID: 0}
     equipmentSlot: 3
