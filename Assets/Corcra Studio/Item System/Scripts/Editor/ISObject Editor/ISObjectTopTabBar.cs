@@ -5,14 +5,24 @@ namespace CorcraStudio.ItemSystem.Editor
 {
     public partial class ISObjectEditor
     {
- 
+        enum TabState
+        {
+            WEAPON,
+            ARMOR,
+            POTION,
+            ABOUT
+        }
+
+
+        TabState tabState;
+
         void TopTabBar()
         {
             GUILayout.BeginHorizontal("Box", GUILayout.ExpandWidth(true));
 
             WeaponTab();
             ArmorTab();
-            GUILayout.Button("Potions");
+            PotionTab();
             AboutTab();
 
             GUILayout.EndHorizontal();
@@ -21,19 +31,30 @@ namespace CorcraStudio.ItemSystem.Editor
 
         void WeaponTab()
         {
-            GUILayout.Button("Weapons");
+            if (GUILayout.Button("Weapons"))
+                tabState = TabState.WEAPON;
+           
         }
 
 
         void ArmorTab()
         {
-            GUILayout.Button("Armor");
+            if (GUILayout.Button("Armors"))
+                tabState = TabState.ARMOR;
+        }
+
+
+        void PotionTab()
+        {
+            if (GUILayout.Button("Potions"))
+                tabState = TabState.POTION;
         }
 
 
         void AboutTab()
         {
-            GUILayout.Button("About");
+            if (GUILayout.Button("About"))
+                tabState = TabState.ABOUT;
         }
     }
 }

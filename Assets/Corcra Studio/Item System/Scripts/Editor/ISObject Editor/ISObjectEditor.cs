@@ -28,6 +28,7 @@ namespace CorcraStudio.ItemSystem.Editor
             if (database == null)
                 database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
 
+            tabState = TabState.WEAPON;
 
         }
 
@@ -37,8 +38,26 @@ namespace CorcraStudio.ItemSystem.Editor
             TopTabBar();
 
             GUILayout.BeginHorizontal();
-            ListView();
-            ItemDetails();
+
+            switch (tabState)
+            {
+                case TabState.WEAPON:
+                    ListView();
+                    ItemDetails();
+                    break;
+                case TabState.ARMOR:
+                    GUILayout.Label("Armor");
+                    break;
+                case TabState.POTION:
+                    GUILayout.Label("Potion");
+                    break;
+                default:
+                    GUILayout.Label("Default State About");
+                    break;
+
+            }
+
+
             GUILayout.EndHorizontal();
 
             BottomStatusBar();
