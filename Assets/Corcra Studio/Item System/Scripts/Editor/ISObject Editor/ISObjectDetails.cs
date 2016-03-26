@@ -68,7 +68,7 @@ namespace CorcraStudio.ItemSystem.Editor
             }
             else
             {
-
+                GUI.SetNextControlName("SaveButton");
                 if (GUILayout.Button("Save"))
                 {
                     if (_selectedIndex == -1)
@@ -80,6 +80,7 @@ namespace CorcraStudio.ItemSystem.Editor
                     tempWeapon = null;
                     _selectedIndex = -1;
                     state = DisplayState.NONE;
+                    GUI.FocusControl("SaveButton");
                 }
 
 
@@ -88,13 +89,20 @@ namespace CorcraStudio.ItemSystem.Editor
                 {
                     if (GUILayout.Button("Delete"))
                     {
+                        if (EditorUtility.DisplayDialog("Delete Weapon",
+                                             "Are you sure that you want to delete " + database.Get(_selectedIndex).Name + " from the database?",
+                                             "Delete",
+                                             "Cancel"))
+                        {
+                            database.Remove(_selectedIndex);
 
-                        database.Remove(_selectedIndex);
+                            showNewWeaponDetails = false;
+                            tempWeapon = null;
+                            _selectedIndex = -1;
+                            state = DisplayState.NONE;
 
-                        showNewWeaponDetails = false;
-                        tempWeapon = null;
-                        _selectedIndex = -1;
-                        state = DisplayState.NONE;
+                            GUI.FocusControl("SaveButton");
+                        }
                     }
                 }
 
@@ -105,6 +113,7 @@ namespace CorcraStudio.ItemSystem.Editor
                     tempWeapon = null;
                     _selectedIndex = -1;
                     state = DisplayState.NONE;
+                    GUI.FocusControl("SaveButton");
                 }
             }
 

@@ -17,6 +17,11 @@ namespace CorcraStudio.ItemSystem.Editor
 
         void ListView()
         {
+            // Turn on to hide the item list on the left
+
+//            if (state != DisplayState.NONE)
+//               return;
+
             _scrollPos = GUILayout.BeginScrollView(_scrollPos, "Box", GUILayout.ExpandHeight(true), GUILayout.Width(_listViewWidth));
 
             for (int cnt = 0; cnt < database.Count; cnt++)
