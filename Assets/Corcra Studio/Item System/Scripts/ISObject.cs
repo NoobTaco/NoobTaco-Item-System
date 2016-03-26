@@ -77,8 +77,8 @@ namespace CorcraStudio.ItemSystem
         {
             GUILayout.BeginVertical();
             _name = EditorGUILayout.TextField("Name", _name);
-            _value = System.Convert.ToInt32(EditorGUILayout.TextField("Value", _value.ToString()));
-            _burden = System.Convert.ToInt32(EditorGUILayout.TextField("Burden", _burden.ToString()));
+            _value = EditorGUILayout.IntField("Value", _value);
+            _burden = EditorGUILayout.IntField("Burden", _burden);
             DisplayIcon();
             DisplayQuality();
             GUILayout.EndVertical();

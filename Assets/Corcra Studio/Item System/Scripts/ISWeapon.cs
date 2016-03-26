@@ -33,7 +33,7 @@ namespace CorcraStudio.ItemSystem
         public void Clone(ISWeapon weapon )
         {
             base.Clone(weapon);
-
+            _minDamage = weapon.MinDamage;
             _durability = weapon.Durability;
             _maxDurability = weapon.MaxDurability;
             equipmentSlot = weapon.equipmentSlot;
@@ -109,9 +109,9 @@ namespace CorcraStudio.ItemSystem
         {
             base.OnGUI();
 
-            _minDamage = System.Convert.ToInt32(EditorGUILayout.TextField("Damage", _minDamage.ToString()));
-            _durability = System.Convert.ToInt32(EditorGUILayout.TextField("Durability", _durability.ToString()));
-            _maxDurability = System.Convert.ToInt32(EditorGUILayout.TextField("Max Durability", _maxDurability.ToString()));
+            _minDamage = EditorGUILayout.IntField("Damage", _minDamage);
+            _durability = EditorGUILayout.IntField("Min Durability", _durability);
+            _maxDurability = EditorGUILayout.IntField("Max Durability", _maxDurability);
 
             DisplayEquipmentSlot();
             DisplayPrefab();

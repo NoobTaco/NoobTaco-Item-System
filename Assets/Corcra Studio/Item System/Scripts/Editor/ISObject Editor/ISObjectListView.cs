@@ -30,6 +30,7 @@ namespace CorcraStudio.ItemSystem.Editor
                 {
                     _selectedIndex = cnt;
                     tempWeapon = new ISWeapon(database.Get(cnt));
+
                     showNewWeaponDetails = true;
                     state = DisplayState.DETAILS;
                 }
