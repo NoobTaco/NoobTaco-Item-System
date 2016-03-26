@@ -19,6 +19,22 @@ namespace CorcraStudio.ItemSystem
         [SerializeField]
         ISQuality _quality;
 
+
+        public ISObject(ISObject item)
+        {
+            Clone(item);
+        }
+
+        public void Clone(ISObject item)
+        {
+            _name = item.Name;
+            _icon = item.Icon;
+            _value = item.Value;
+            _burden = item.Burden;
+            _quality = item.Quality;
+        }
+
+
         public int Burden
         {
             get { return _burden; }

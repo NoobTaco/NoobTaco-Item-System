@@ -82,6 +82,23 @@ namespace CorcraStudio.ItemSystem.Editor
                     state = DisplayState.NONE;
                 }
 
+
+
+                if (_selectedIndex != -1)
+                {
+                    if (GUILayout.Button("Delete"))
+                    {
+
+                        database.Remove(_selectedIndex);
+
+                        showNewWeaponDetails = false;
+                        tempWeapon = null;
+                        _selectedIndex = -1;
+                        state = DisplayState.NONE;
+                    }
+                }
+
+
                 if (GUILayout.Button("Cancel"))
                 {
                     showNewWeaponDetails = false;

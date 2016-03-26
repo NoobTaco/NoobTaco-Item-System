@@ -15,24 +15,31 @@ namespace CorcraStudio.ItemSystem
         [SerializeField]
         int _maxDurability;
         [SerializeField]
-        ISEquipmentSlot _equipmentSlot;
-        [SerializeField]
         GameObject _prefab;
 
         public EquipmentSlot equipmentSlot;
 
         public ISWeapon()
         {
-            _equipmentSlot = new ISEquipmentSlot();
+            
         }
 
-        public ISWeapon(int durability, int maxDurability, ISEquipmentSlot eqipmentSlot, GameObject prefab)
+        public ISWeapon(ISWeapon weapon)
         {
-            _durability = durability;
-            _maxDurability = maxDurability;
-            _equipmentSlot = eqipmentSlot;
-            _prefab = prefab;
+            Clone(weapon);
         }
+
+
+        public void Clone(ISWeapon weapon )
+        {
+            base.Clone(weapon);
+
+            _durability = weapon.Durability;
+            _maxDurability = weapon.MaxDurability;
+            equipmentSlot = weapon.equipmentSlot;
+            _prefab = weapon.Prefab;
+        }
+
 
         public int Durability
         {
@@ -50,10 +57,6 @@ namespace CorcraStudio.ItemSystem
             set { _minDamage = value; }
         }
 
-        public ISEquipmentSlot EquipmentSlot
-        {
-            get { return _equipmentSlot; }
-        }
 
         public GameObject Prefab
         {
