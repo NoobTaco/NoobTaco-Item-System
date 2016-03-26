@@ -17,9 +17,58 @@ MonoBehaviour:
     _value: 10
     _burden: 10
     _quality:
-      _name: Uncommon
-      _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      _name: Common
+      _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
     _minDamage: 5
     _durability: 10
     _maxDurability: 10
     _prefab: {fileID: 183154, guid: d6b915f9912d26a4ebada0a935e303ff, type: 2}
+    equipmentSlot: 3
+  - _name: Dagger
+    _icon: {fileID: 0}
+    _value: 1
+    _burden: 2
+    _quality:
+      _name: Common
+      _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    _minDamage: 3
+    _durability: 4
+    _maxDurability: 5
+    _prefab: {fileID: 0}
+    equipmentSlot: 2
+  - _name: Knife
+    _icon: {fileID: 0}
+    _value: 0
+    _burden: 0
+    _quality:
+      _name: Common
+      _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    _minDamage: 0
+    _durability: 0
+    _maxDurability: 0
+    _prefab: {fileID: 0}
+    equipmentSlot: 0
+  - _name: Clubz
+    _icon: {fileID: 0}
+    _value: 0
+    _burden: 0
+    _quality:
+      _name: Common
+      _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    _minDamage: 0
+    _durability: 0
+    _maxDurability: 0
+    _prefab: {fileID: 0}
+    equipmentSlot: 0
+  - _name: Clubz
+    _icon: {fileID: 0}
+    _value: 0
+    _burden: 0
+    _quality:
+      _name: Common
+      _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    _minDamage: 0
+    _durability: 0
+    _maxDurability: 0
+    _prefab: {fileID: 0}
+    equipmentSlot: 0

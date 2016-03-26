@@ -11,6 +11,8 @@ namespace CorcraStudio.ItemSystem.Editor
         int _listViewButtonWidth = 190;
         int _listViewButtonHeight = 25;
 
+        int _selectedIndex = -1;
+
 
 
         void ListView()
@@ -19,7 +21,13 @@ namespace CorcraStudio.ItemSystem.Editor
 
             for (int cnt = 0; cnt < database.Count; cnt++)
             {
-                GUILayout.Button(database.Get(cnt).Name, "box", GUILayout.Width(_listViewButtonWidth), GUILayout.Height(_listViewButtonHeight));
+                if(GUILayout.Button(database.Get(cnt).Name, "box", GUILayout.Width(_listViewButtonWidth), GUILayout.Height(_listViewButtonHeight)))
+                {
+                    _selectedIndex = cnt;
+                    tempWeapon = database.Get(cnt);
+                    showNewWeaponDetails = true;
+                    state = DisplayState.DETAILS;
+                }
                 
             }
 

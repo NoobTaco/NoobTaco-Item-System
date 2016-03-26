@@ -1,22 +1,38 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 namespace CorcraStudio.ItemSystem.Editor
 {
     public partial class ISObjectEditor
     {
+        enum DisplayState
+        {
+            NONE,
+            DETAILS
+        };
+
         ISWeapon tempWeapon = new ISWeapon();
 
         bool showNewWeaponDetails = false;
 
+        DisplayState state = DisplayState.NONE;
 
         void ItemDetails()
         {
             GUILayout.BeginVertical("Box", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             GUILayout.BeginVertical(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 
-            if (showNewWeaponDetails)
-                DisplayNewWeapon();
+            switch (state)
+            {
+                case DisplayState.DETAILS:
+                    if (showNewWeaponDetails)
+                        DisplayNewWeapon();
+                    break;
+                default:
+                    break;
+            }
+
 
             GUILayout.EndVertical();
 
@@ -47,6 +63,7 @@ namespace CorcraStudio.ItemSystem.Editor
                 {
                     tempWeapon = new ISWeapon();
                     showNewWeaponDetails = true;
+                    state = DisplayState.DETAILS;
                 }
             }
             else
@@ -54,22 +71,23 @@ namespace CorcraStudio.ItemSystem.Editor
 
                 if (GUILayout.Button("Save"))
                 {
+                    if (_selectedIndex == -1)
+                        database.Add(tempWeapon);
+                    else
+                        database.Replace(_selectedIndex, tempWeapon);
+
                     showNewWeaponDetails = false;
-
-                    //                   string DATABASE_NAME = @"csQualityDatabase.asset";
-                    //                    string DATABASE_PATH = @"Database";
-                    //                    ISQualityDatabase qdb;
-                    //
-                    //                    tempWeapon.Quality = qdb.Get(tempWeapon.SelectedQualityID);
-
-                    database.Add(tempWeapon);
                     tempWeapon = null;
+                    _selectedIndex = -1;
+                    state = DisplayState.NONE;
                 }
 
                 if (GUILayout.Button("Cancel"))
                 {
                     showNewWeaponDetails = false;
                     tempWeapon = null;
+                    _selectedIndex = -1;
+                    state = DisplayState.NONE;
                 }
             }
 
