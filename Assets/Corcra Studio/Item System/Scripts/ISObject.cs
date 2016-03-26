@@ -110,7 +110,15 @@ namespace CorcraStudio.ItemSystem
 
         public void DisplayQuality()
         {
-            qualitySelectedIndex = EditorGUILayout.Popup("Quality", qualitySelectedIndex, option);
+      int itemIndex = 0;
+
+            if ( _quality != null)
+                itemIndex = qdb.GetIndex(_quality.Name);
+
+            if (itemIndex == -1)
+                itemIndex = 0;
+
+            qualitySelectedIndex = EditorGUILayout.Popup("Quality", itemIndex, option);
             _quality = qdb.Get(SelectedQualityID);
         }
 
