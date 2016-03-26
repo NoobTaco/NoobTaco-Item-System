@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections;
 using System;
 
@@ -104,7 +106,7 @@ namespace CorcraStudio.ItemSystem
 
 
         //this code will go in to a new script later
-
+#if UNITY_EDITOR
         public override void OnGUI()
         {
             base.OnGUI();
@@ -136,6 +138,6 @@ namespace CorcraStudio.ItemSystem
         {
            _prefab = EditorGUILayout.ObjectField("Prefab", _prefab, typeof(GameObject), false) as GameObject;
         }
-
+#endif
     }
 }

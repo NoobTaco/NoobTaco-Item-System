@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections;
 using System;
 
@@ -18,6 +20,9 @@ namespace CorcraStudio.ItemSystem
         int _burden;
         [SerializeField]
         ISQuality _quality;
+
+
+        public ISObject() { }
 
 
         public ISObject(ISObject item)
@@ -68,10 +73,11 @@ namespace CorcraStudio.ItemSystem
 
 
         //This code is going to be placed in a new class later on
-
+#if UNITY_EDITOR
         ISQualityDatabase qdb;
         int qualitySelectedIndex = 0;
         string[] option;
+        bool qualityDatabaseLoaded = false;
 
         public virtual void OnGUI()
         {
@@ -95,7 +101,7 @@ namespace CorcraStudio.ItemSystem
         {
             get { return qualitySelectedIndex; }
         }
-        public ISObject()
+        public void LoadQualityDatabase()
         {
             string DATABASE_NAME = @"csQualityDatabase.asset";
             string DATABASE_PATH = @"Database";
@@ -104,15 +110,23 @@ namespace CorcraStudio.ItemSystem
             option = new string[qdb.Count];
             for (int cnt = 0; cnt < qdb.Count; cnt++)
                 option[cnt] = qdb.Get(cnt).Name;
+
+            qualityDatabaseLoaded = true;
         }
 
 
 
         public void DisplayQuality()
         {
-      int itemIndex = 0;
+            if (!qualityDatabaseLoaded)
+            {
+                LoadQualityDatabase();
+                return;
+            }
 
-            if ( _quality != null)
+            int itemIndex = 0;
+
+            if (_quality != null)
                 itemIndex = qdb.GetIndex(_quality.Name);
 
             if (itemIndex == -1)
@@ -123,7 +137,7 @@ namespace CorcraStudio.ItemSystem
         }
 
         //To be moved to a editor version of this class
-
+#endif
 
     }
 }

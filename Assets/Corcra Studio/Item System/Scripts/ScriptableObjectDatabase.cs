@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
 using UnityEditor;
+#endif
+using UnityEngine;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace CorcraStudio
         [SerializeField]
         protected List<T> database = new List<T>();
 
-
+#if UNITY_EDITOR
         public void Add(T item)
         {
             database.Add(item);
@@ -42,6 +44,7 @@ namespace CorcraStudio
 
         }
 
+#endif
 
         public int Count
         {
@@ -54,7 +57,7 @@ namespace CorcraStudio
             return database.ElementAt(index);
         }
 
-
+#if UNITY_EDITOR
         public void Replace(int index, T item)
         {
             database[index] = item;
@@ -84,5 +87,7 @@ namespace CorcraStudio
 
             return db;
         }
+#endif
+
     }
 }
