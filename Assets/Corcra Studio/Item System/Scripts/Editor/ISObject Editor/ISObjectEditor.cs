@@ -1,4 +1,12 @@
-﻿using UnityEditor;
+﻿/// <summary>
+/// ISObjectEditor.cs
+/// March 27, 2016
+/// Mike Norton - Corcra Studio
+/// 
+/// Editor Script for interacting with the various databases created in the RPG Item System Code-A-Long Series
+/// 
+/// </summary>
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
@@ -6,17 +14,18 @@ namespace CorcraStudio.ItemSystem.Editor
 {
     public partial class ISObjectEditor : EditorWindow
     {
-        ISWeaponDatabase database;
-        //ISObjectCategory armorDatabase = new ISObjectCategory();
-
+        //the databases that we will be using
         ISObjectDatabaseType<ISWeaponDatabase, ISWeapon> weaponDB = new ISObjectDatabaseType<ISWeaponDatabase, ISWeapon>("weaponTest.asset");
         ISObjectDatabaseType<ISArmorDatabase, ISArmor> armorDB = new ISObjectDatabaseType<ISArmorDatabase, ISArmor>("armorTest.asset");
+        ISObjectDatabaseType<ISQualityDatabase, ISQuality> qualityDB = new ISObjectDatabaseType<ISQualityDatabase, ISQuality>("QualityDatabase.asset");
 
-        const string DATABASE_NAME = @"csWeaponDatabase.asset";
-        const string DATABASE_PATH = @"Database";
-        const string DATABASE_FULL_PATH = @"Assets/" + DATABASE_PATH + "/" + DATABASE_NAME;
+        Vector2 buttonSize = new Vector2(190, 25);          //Size of the buttons
+        int _listViewWidth = 200;                           //Width of the listview
 
 
+        /// <summary>
+        /// Static method called everime the Editor Window is openned.
+        /// </summary>
         [MenuItem("Corcra Studio/Database/Item System Editor %#i")]
         public static void Init()
         {
@@ -27,21 +36,23 @@ namespace CorcraStudio.ItemSystem.Editor
         }
 
 
+
+        /// <summary>
+        /// Make sure that things are setup as soon as this Edit starts up
+        /// </summary>
         void OnEnable()
         {
-            //if (database == null)
-            //    database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
-
-            //armorDatabase.OnEnable();
-
             weaponDB.OnEnable("Weapon");
             armorDB.OnEnable("Armor");
 
-            tabState = TabState.WEAPON;
-
+            tabState = TabState.QUALITY;
         }
 
 
+
+        /// <summary>
+        /// Display the GUI for the user to interact with
+        /// </summary>
         void OnGUI()
         {
             TopTabBar();
@@ -52,22 +63,17 @@ namespace CorcraStudio.ItemSystem.Editor
             {
                 case TabState.WEAPON:
                     weaponDB.OnGUI(buttonSize, _listViewWidth);
-                    //ListView();
-                    //ItemDetails();
                     break;
                 case TabState.ARMOR:
-                    //armorDatabase.OnGUI(buttonSize, _listViewWidth);
                     armorDB.OnGUI(buttonSize, _listViewWidth);
                     break;
                 case TabState.POTION:
                     GUILayout.Label("Potion");
                     break;
                 default:
-                    GUILayout.Label("Default State About");
+                    GUILayout.Label("Quality");
                     break;
-
             }
-
 
             GUILayout.EndHorizontal();
 

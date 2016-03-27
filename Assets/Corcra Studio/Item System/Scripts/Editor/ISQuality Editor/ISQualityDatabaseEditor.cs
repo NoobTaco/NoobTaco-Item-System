@@ -7,6 +7,8 @@ namespace CorcraStudio.ItemSystem.Editor
 {
     public partial class ISQualityDatabaseEditor : EditorWindow
     {
+//        ISObjectDatabaseType<> weaponDB = new ISObjectDatabaseType<>("QualityDatabase.asset");
+
         ISQualityDatabase qualityDatabase;
         Texture2D selectedTexture;
         int selectedIndex = -1;
