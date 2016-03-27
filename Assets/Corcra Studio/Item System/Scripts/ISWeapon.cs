@@ -28,7 +28,6 @@ namespace CorcraStudio.ItemSystem
             _minDamage = 0;
             _durability = 1;
             _maxDurability = 1;
-            _prefab = new GameObject();
             equipmentSlot = EquipmentSlot.Hands;
         }
 
@@ -68,7 +67,10 @@ namespace CorcraStudio.ItemSystem
 
         public GameObject Prefab
         {
-            get { return _prefab; }
+            get
+            {
+                return _prefab;
+            }
         }
 
         public int Attack()

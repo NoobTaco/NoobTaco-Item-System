@@ -7,6 +7,7 @@ namespace CorcraStudio.ItemSystem.Editor
     public partial class ISObjectEditor : EditorWindow
     {
         ISWeaponDatabase database;
+        ISObjectCategory armorDatabase = new ISObjectCategory();
 
         const string DATABASE_NAME = @"csWeaponDatabase.asset";
         const string DATABASE_PATH = @"Database";
@@ -28,7 +29,9 @@ namespace CorcraStudio.ItemSystem.Editor
             if (database == null)
                 database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
 
-            tabState = TabState.WEAPON;
+            armorDatabase.OnEnable();
+
+            tabState = TabState.ABOUT;
 
         }
 
@@ -46,7 +49,7 @@ namespace CorcraStudio.ItemSystem.Editor
                     ItemDetails();
                     break;
                 case TabState.ARMOR:
-                    GUILayout.Label("Armor");
+                    armorDatabase.OnGUI(buttonSize, _listViewWidth);
                     break;
                 case TabState.POTION:
                     GUILayout.Label("Potion");

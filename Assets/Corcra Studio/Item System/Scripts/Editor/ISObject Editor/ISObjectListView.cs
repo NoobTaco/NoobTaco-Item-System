@@ -13,6 +13,10 @@ namespace CorcraStudio.ItemSystem.Editor
 
         int _selectedIndex = -1;
 
+        // new vars for new system
+        Vector2 buttonSize = new Vector2(190,25);
+
+
 
 
         void ListView()
