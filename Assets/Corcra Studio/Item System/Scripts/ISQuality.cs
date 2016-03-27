@@ -5,7 +5,7 @@ using System;
 namespace CorcraStudio.ItemSystem
 {
     [Serializable]
-    public class ISQuality : IISQuality
+    public class ISQuality : IISQuality, IISDatabaseObject
     {
 
         [SerializeField]
@@ -28,6 +28,19 @@ namespace CorcraStudio.ItemSystem
             _icon = icon;
         }
 
+
+        public void Clone(IISDatabaseObject item)
+        {
+            _name = item.Name;
+            _icon = item.Icon;
+        }
+
+        public void OnGUI()
+        {
+            throw new NotImplementedException();
+        }
+
+
         public string Name
         {
             get { return _name; }
@@ -40,6 +53,7 @@ namespace CorcraStudio.ItemSystem
             set { _icon = value; }
 
         }
+
 
     }
 }

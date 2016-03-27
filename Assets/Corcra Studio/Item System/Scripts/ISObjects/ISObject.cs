@@ -8,7 +8,7 @@ using System;
 namespace CorcraStudio.ItemSystem
 {
     [System.Serializable]
-    public class ISObject : IISObject
+    public class ISObject : IISObject, IISDatabaseObject
     {
         [SerializeField]
         string _name;
@@ -38,6 +38,15 @@ namespace CorcraStudio.ItemSystem
             _burden = item.Burden;
             _quality = item.Quality;
         }
+
+
+
+        public void Clone(IISDatabaseObject item)
+        {
+            _name = item.Name;
+            _icon = item.Icon;
+        }
+
 
 
         public int Burden

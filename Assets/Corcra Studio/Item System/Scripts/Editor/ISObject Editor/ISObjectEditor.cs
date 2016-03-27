@@ -17,7 +17,7 @@ namespace CorcraStudio.ItemSystem.Editor
         //the databases that we will be using
         ISObjectDatabaseType<ISWeaponDatabase, ISWeapon> weaponDB = new ISObjectDatabaseType<ISWeaponDatabase, ISWeapon>("weaponTest.asset");
         ISObjectDatabaseType<ISArmorDatabase, ISArmor> armorDB = new ISObjectDatabaseType<ISArmorDatabase, ISArmor>("armorTest.asset");
-        ISObjectDatabaseType<ISQualityDatabase, ISQuality> qualityDB = new ISObjectDatabaseType<ISQualityDatabase, ISQuality>("QualityDatabase.asset");
+//        ISObjectDatabaseType<ISQualityDatabase, ISQuality> qualityDB = new ISObjectDatabaseType<ISQualityDatabase, ISQuality>("QualityDatabase.asset");
 
         Vector2 buttonSize = new Vector2(190, 25);          //Size of the buttons
         int _listViewWidth = 200;                           //Width of the listview

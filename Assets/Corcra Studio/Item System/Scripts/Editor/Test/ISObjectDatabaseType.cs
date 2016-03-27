@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace CorcraStudio.ItemSystem.Editor
 {
-    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : ISObject, new()
+    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : IISDatabaseObject, new()
     {
         [SerializeField]
         D database;
