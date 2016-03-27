@@ -22,19 +22,44 @@ using System.Collections.Generic;
 
 namespace CorcraStudio
 {
-    public class ScriptableObjectDatabase<T> : ScriptableObject where T : class
+    public partial class ScriptableObjectDatabase<T> : ScriptableObject where T : class
     {
         [SerializeField]
-        protected List<T> database = new List<T>();
+        protected List<T> item = new List<T>();
+
+        public List<T> Item
+        {
+            get { return item; }
+        }
+
+        /// <summary>
+        /// Get the number of items in the database
+        /// </summary>
+        /// <value>The count.</value>
+        public int Count
+        {
+            get { return item.Count; }
+        }
+
+
+
+        /// <summary>
+        /// Get the item at the specified index
+        /// </summary>
+        /// <param name="index">Index.</param>
+        public T Get(int index)
+        {
+            return item.ElementAt(index);
+        }
 
 #if UNITY_EDITOR
         /// <summary>
         /// Add an item to the database
         /// </summary>
         /// <param name="item"></param>
-        public void Add(T item)
+        public void Add(T i)
         {
-            database.Add(item);
+            item.Add(i);
             EditorUtility.SetDirty(this);
         }
 
@@ -45,22 +70,22 @@ namespace CorcraStudio
         /// </summary>
         /// <param name="index">Index.</param>
         /// <param name="item">Item.</param>
-        public void Insert(int index, T item)
+        public void Insert(int index, T i)
         {
-            database.Insert(index, item);
+            item.Insert(index, i);
             EditorUtility.SetDirty(this);
 
         }
-        
+
 
 
         /// <summary>
         /// Remove an Item.
         /// </summary>
         /// <param name="item">Item.</param>
-        public void Remove(T item)
+        public void Remove(T i)
         {
-            database.Remove(item);
+            item.Remove(i);
             EditorUtility.SetDirty(this);
 
         }
@@ -73,45 +98,22 @@ namespace CorcraStudio
         /// <param name="index">Item.</param>
         public void Remove(int index)
         {
-            database.RemoveAt(index);
+            item.RemoveAt(index);
             EditorUtility.SetDirty(this);
 
         }
-#endif
 
-
-
-        /// <summary>
-        /// Get the number of items in the database
-        /// </summary>
-        /// <value>The count.</value>
-        public int Count
-        {
-            get { return database.Count; }
-        }
-
-
-
-        /// <summary>
-        /// Get the item at the specified index
-        /// </summary>
-        /// <param name="index">Index.</param>
-        public T Get(int index)
-        {
-            return database.ElementAt(index);
-        }
-
-
-
-#if UNITY_EDITOR
+        
+        
+        
         /// <summary>
         /// Replace the item at the specified index with this new one.
         /// </summary>
         /// <param name="index">Index.</param>
         /// <param name="item">Item.</param>
-        public void Replace(int index, T item)
+        public void Replace(int index, T i)
         {
-            database[index] = item;
+            item[index] = i;
             EditorUtility.SetDirty(this);
         }
 
