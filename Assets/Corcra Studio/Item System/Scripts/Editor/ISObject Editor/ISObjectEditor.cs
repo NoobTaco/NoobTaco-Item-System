@@ -7,10 +7,10 @@ namespace CorcraStudio.ItemSystem.Editor
     public partial class ISObjectEditor : EditorWindow
     {
         ISWeaponDatabase database;
- //       ISObjectCategory armorDatabase = new ISObjectCategory();
+        //ISObjectCategory armorDatabase = new ISObjectCategory();
 
-        //ISObjectDatabaseType<ISWeaponDatabase, ISWeapon> weapondbt = new ISObjectDatabaseType<ISWeaponDatabase, ISWeapon>("weaponTest.asset");
-        //ISObjectDatabaseType<ISArmorDatabase, ISArmor> armordbt = new ISObjectDatabaseType<ISArmorDatabase, ISArmor>("armorTest.asset");
+        ISObjectDatabaseType<ISWeaponDatabase, ISWeapon> weaponDB = new ISObjectDatabaseType<ISWeaponDatabase, ISWeapon>("weaponTest.asset");
+        ISObjectDatabaseType<ISArmorDatabase, ISArmor> armorDB = new ISObjectDatabaseType<ISArmorDatabase, ISArmor>("armorTest.asset");
 
         const string DATABASE_NAME = @"csWeaponDatabase.asset";
         const string DATABASE_PATH = @"Database";
@@ -29,13 +29,13 @@ namespace CorcraStudio.ItemSystem.Editor
 
         void OnEnable()
         {
-            if (database == null)
-                database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
+            //if (database == null)
+            //    database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
 
-    //        armorDatabase.OnEnable();
+            //armorDatabase.OnEnable();
 
-            //weapondbt.OnEnable();
-            //armordbt.OnEnable();
+            weaponDB.OnEnable("Weapon");
+            armorDB.OnEnable("Armor");
 
             tabState = TabState.WEAPON;
 
@@ -51,11 +51,13 @@ namespace CorcraStudio.ItemSystem.Editor
             switch (tabState)
             {
                 case TabState.WEAPON:
-                    ListView();
-                    ItemDetails();
+                    weaponDB.OnGUI(buttonSize, _listViewWidth);
+                    //ListView();
+                    //ItemDetails();
                     break;
                 case TabState.ARMOR:
- //                   armorDatabase.OnGUI(buttonSize, _listViewWidth);
+                    //armorDatabase.OnGUI(buttonSize, _listViewWidth);
+                    armorDB.OnGUI(buttonSize, _listViewWidth);
                     break;
                 case TabState.POTION:
                     GUILayout.Label("Potion");

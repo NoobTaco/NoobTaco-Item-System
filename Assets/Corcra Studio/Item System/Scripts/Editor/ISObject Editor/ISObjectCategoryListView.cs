@@ -11,10 +11,10 @@ using System.Collections;
 
 namespace CorcraStudio.ItemSystem.Editor
 {
-    public partial class ISObjectCategory
+    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : ISObject, new()
     {
         int _selectedIndex = -1;                // -1 means we have nothing selected
-        ISArmor tempArmor = new ISArmor();      // a temp holder for the item we are working on
+        T tItem;// = new ISArmor();      // a temp holder for the item we are working on
         bool showDetails = false;               // flag to show that we should be showing the item details
         Vector2 _scrollPos = Vector2.zero;      // the pos of the scrollbar for the ListView
 
@@ -29,12 +29,13 @@ namespace CorcraStudio.ItemSystem.Editor
         {
             _scrollPos = GUILayout.BeginScrollView(_scrollPos, "Box", GUILayout.ExpandHeight(true), GUILayout.Width(_listViewWidth));
 
-            for (int cnt = 0; cnt < Database.Count; cnt++)
+            for (int cnt = 0; cnt < database.Count; cnt++)
             {
-                if (GUILayout.Button(Database.Get(cnt).Name, "box", GUILayout.Width(buttonSize.x), GUILayout.Height(buttonSize.y)))
+                if (GUILayout.Button(database.Get(cnt).Name, "box", GUILayout.Width(buttonSize.x), GUILayout.Height(buttonSize.y)))
                 {
                     _selectedIndex = cnt;
-                    tempArmor = new ISArmor(Database.Get(cnt));
+                    tItem = new T();
+                    tItem.Clone(database.Get(cnt));
                     showDetails = true;
                 }
             }

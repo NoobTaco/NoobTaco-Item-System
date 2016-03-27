@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace CorcraStudio.ItemSystem.Editor
 {
-    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : ISObject
+    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : ISObject, new()
     {
         [SerializeField]
         D database;
@@ -18,6 +18,7 @@ namespace CorcraStudio.ItemSystem.Editor
         string dbName;
         [SerializeField]
         string dbPath = @"Database";
+        public string strItemType = "Item";
 
 
 
@@ -28,17 +29,20 @@ namespace CorcraStudio.ItemSystem.Editor
 
 
 
-        public void OnEnable()
+        public void OnEnable(string itemType)
         {
+            strItemType = itemType;
+
             if (database == null)
                 LoadDatabase();
         }
 
 
 
-        public void OnGUI()
+        public void OnGUI(Vector2 buttonSize, int _listViewWidth)
         {
-
+            ListView(buttonSize, _listViewWidth);
+            ItemDetails();
         }
     }
 }

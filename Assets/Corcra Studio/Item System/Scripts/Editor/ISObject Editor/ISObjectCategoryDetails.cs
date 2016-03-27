@@ -13,12 +13,8 @@ using System.Collections;
 
 namespace CorcraStudio.ItemSystem.Editor
 {
-    public partial class ISObjectCategory
+    public partial class ISObjectDatabaseType<D, T> where D : ScriptableObjectDatabase<T> where T : ISObject, new()
     {
-        string strItemType = "Armor";
-
-
-
         /// <summary>
         /// Display the details of the selected Item
         /// </summary>
@@ -28,7 +24,7 @@ namespace CorcraStudio.ItemSystem.Editor
             GUILayout.BeginVertical(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 
             if (showDetails)
-                tempArmor.OnGUI();
+                tItem.OnGUI();
 
             GUILayout.EndVertical();
 
@@ -70,7 +66,7 @@ namespace CorcraStudio.ItemSystem.Editor
         {
             if (GUILayout.Button("Create " + strItemType))
             {
-                tempArmor = new ISArmor();
+                tItem = new T();
                 showDetails = true;
             }
         }
@@ -87,13 +83,13 @@ namespace CorcraStudio.ItemSystem.Editor
             {
                 //save item
                 if (_selectedIndex == -1)
-                    Database.Add(tempArmor);
+                    Add(tItem);
                 else
-                    Database.Replace(_selectedIndex, tempArmor);
+                    Replace(_selectedIndex, tItem);
 
                 showDetails = false;
                 _selectedIndex = -1;
-                tempArmor = null;
+                tItem = null;
                 GUI.FocusControl("SaveButton");
             }
         }
@@ -107,7 +103,7 @@ namespace CorcraStudio.ItemSystem.Editor
         {
             if (GUILayout.Button("Cancel"))
             {
-                tempArmor = null;
+                tItem = null;
                 showDetails = false;
                 _selectedIndex = -1;
                 GUI.FocusControl("SaveButton");
@@ -123,12 +119,12 @@ namespace CorcraStudio.ItemSystem.Editor
         {
             if (GUILayout.Button("Delete"))
             {
-                if (EditorUtility.DisplayDialog("Delete " + tempArmor.Name, "Are you sure that you want to delete this item from the database?", "Delete", "Cancel"))
+                if (EditorUtility.DisplayDialog("Delete " + tItem.Name, "Are you sure that you want to delete this item from the database?", "Delete", "Cancel"))
                 {
-                    Database.Remove(_selectedIndex);
+                    Remove(_selectedIndex);
 
                     showDetails = false;
-                    tempArmor = null;
+                    tItem = null;
                     _selectedIndex = -1;
                     GUI.FocusControl("SaveButton");
                 }
