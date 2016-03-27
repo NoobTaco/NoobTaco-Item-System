@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// ISObjectCategory.cs
+/// Mar 27, 2016
+/// Mike Norton - Corcra Studio
+/// 
+/// The partial class file that holds all of the generic variables and methods for the rest of the class.
+/// 
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
 namespace CorcraStudio.ItemSystem.Editor

@@ -9,6 +9,9 @@ namespace CorcraStudio.ItemSystem.Editor
         ISWeaponDatabase database;
         ISObjectCategory armorDatabase = new ISObjectCategory();
 
+        ISObjectDatabaseType<ISWeaponDatabase, ISWeapon> weapondbt = new ISObjectDatabaseType<ISWeaponDatabase, ISWeapon>("weaponTest.asset");
+        ISObjectDatabaseType<ISArmorDatabase, ISArmor> armordbt = new ISObjectDatabaseType<ISArmorDatabase, ISArmor>("armorTest.asset");
+
         const string DATABASE_NAME = @"csWeaponDatabase.asset";
         const string DATABASE_PATH = @"Database";
         const string DATABASE_FULL_PATH = @"Assets/" + DATABASE_PATH + "/" + DATABASE_NAME;
@@ -30,6 +33,9 @@ namespace CorcraStudio.ItemSystem.Editor
                 database = ISWeaponDatabase.GetDatabase<ISWeaponDatabase>(DATABASE_PATH, DATABASE_NAME);
 
             armorDatabase.OnEnable();
+
+            weapondbt.OnEnable();
+            armordbt.OnEnable();
 
             tabState = TabState.ABOUT;
 
