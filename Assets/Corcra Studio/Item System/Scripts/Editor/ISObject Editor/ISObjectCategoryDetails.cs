@@ -8,6 +8,7 @@
 /// </summary>
 
 using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 namespace CorcraStudio.ItemSystem.Editor
@@ -16,11 +17,18 @@ namespace CorcraStudio.ItemSystem.Editor
     {
         string strItemType = "Armor";
 
+
+
+        /// <summary>
+        /// Display the details of the selected Item
+        /// </summary>
         public void ItemDetails()
         {
             GUILayout.BeginVertical("Box", GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             GUILayout.BeginVertical(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 
+            if (showDetails)
+                tempArmor.OnGUI();
 
             GUILayout.EndVertical();
 
@@ -29,65 +37,102 @@ namespace CorcraStudio.ItemSystem.Editor
             DisplayButtons();
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
-
-
         }
 
 
+
+        /// <summary>
+        /// Displays the buttons at the bottom of the panel
+        /// </summary>
         void DisplayButtons()
         {
             if (showDetails)
             {
-                SaveButton();
-                CancelButton();
+                ButtonSave();
+
+                if (_selectedIndex > -1)
+                    ButtonDelete();
+
+                ButtonCancel();
             }
             else
             {
-                CreateItemButton();
+                ButtonCreate();
             }
         }
-        void CreateItemButton()
+
+
+
+        /// <summary>
+        /// Button for Creating an item
+        /// </summary>
+        void ButtonCreate()
         {
             if (GUILayout.Button("Create " + strItemType))
             {
                 tempArmor = new ISArmor();
                 showDetails = true;
-                createNewArmor = true;
             }
         }
 
 
-        void SaveButton()
+
+        /// <summary>
+        /// Button for Saving an item
+        /// </summary>
+        void ButtonSave()
         {
             GUI.SetNextControlName("SaveButton");
             if (GUILayout.Button("Save"))
             {
-                showDetails = false;
-                createNewArmor = false;
-                _selectedIndex = -1;
-
                 //save item
+                if (_selectedIndex == -1)
+                    Database.Add(tempArmor);
+                else
+                    Database.Replace(_selectedIndex, tempArmor);
+
+                showDetails = false;
+                _selectedIndex = -1;
                 tempArmor = null;
+                GUI.FocusControl("SaveButton");
             }
         }
 
 
-        void CancelButton()
+
+        /// <summary>
+        /// Button to cancel the item edit or save
+        /// </summary>
+        void ButtonCancel()
         {
             if (GUILayout.Button("Cancel"))
             {
                 tempArmor = null;
                 showDetails = false;
-                createNewArmor = false;
                 _selectedIndex = -1;
                 GUI.FocusControl("SaveButton");
             }
         }
 
 
-        void DeleteButton()
-        {
 
+        /// <summary>
+        /// Button to delete the item from the database
+        /// </summary>
+        void ButtonDelete()
+        {
+            if (GUILayout.Button("Delete"))
+            {
+                if (EditorUtility.DisplayDialog("Delete " + tempArmor.Name, "Are you sure that you want to delete this item from the database?", "Delete", "Cancel"))
+                {
+                    Database.Remove(_selectedIndex);
+
+                    showDetails = false;
+                    tempArmor = null;
+                    _selectedIndex = -1;
+                    GUI.FocusControl("SaveButton");
+                }
+            }
         }
     }
 }

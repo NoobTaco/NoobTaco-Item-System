@@ -14,7 +14,7 @@ MonoBehaviour:
   database:
   - _name: Short Sword
     _icon: {fileID: 0}
-    _value: 0
+    _value: 4
     _burden: 0
     _quality:
       _name: Uncommon

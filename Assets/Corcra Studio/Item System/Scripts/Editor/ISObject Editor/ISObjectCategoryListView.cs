@@ -14,10 +14,10 @@ namespace CorcraStudio.ItemSystem.Editor
     public partial class ISObjectCategory
     {
         int _selectedIndex = -1;                // -1 means we have nothing selected
-        ISArmor tempArmor;                      // a temp holder for the item we are working on
-        bool createNewArmor = false;            // flag to show that we are working on a new item
+        ISArmor tempArmor = new ISArmor();      // a temp holder for the item we are working on
         bool showDetails = false;               // flag to show that we should be showing the item details
         Vector2 _scrollPos = Vector2.zero;      // the pos of the scrollbar for the ListView
+
 
 
         /// <summary>
@@ -35,7 +35,6 @@ namespace CorcraStudio.ItemSystem.Editor
                 {
                     _selectedIndex = cnt;
                     tempArmor = new ISArmor(Database.Get(cnt));
-                    createNewArmor = true;
                     showDetails = true;
                 }
             }
